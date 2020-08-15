@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, Button } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-
+import { useNavigation } from '@react-navigation/native';
 
 const Header = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.root}>
             <View style={styles.rootIcon}>
@@ -12,8 +13,18 @@ const Header = () => {
                 <Text style={styles.logoText}>YouSup</Text>
             </View>
             <View style={[styles.rootIcon,styles.rightIcon]}>
-                <MaterialIcon name="videocam" size={26} color="#bdc3c7" style={styles.rightIconChild}/>
-                <MaterialIcon name="search" size={26} color="#bdc3c7" style={styles.rightIconChild}/>
+                <MaterialIcon name="videocam" size={26} color="#bdc3c7" style={styles.rightIconChild}
+                    onPress={()=>{console.log('wrap')}}
+                />
+                <MaterialIcon 
+                    name="search" 
+                    size={26} 
+                    color="#bdc3c7" 
+                    style={styles.rightIconChild}
+                    onPress={()=> {
+                        navigation.navigate("Search")
+                    }}
+                />
                 <MaterialIcon name="account-circle" size={26} color="#bdc3c7" style={styles.rightIconChild}/>
             </View>
         </View>

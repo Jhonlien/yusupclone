@@ -3,13 +3,11 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native'
 
 import Header from '../components/Header'
 import Card from '../components/Card'
-import Search from './Search'
 
 const Home = () => {
     return (
         <View style={{flex:1}}>
-            <Search/>
-            {/* <Header/>
+            <Header/>
             <ScrollView>
                 <Card/>
                 <Card/>
@@ -18,7 +16,7 @@ const Home = () => {
                 <Card/>
 
 
-            </ScrollView> */}
+            </ScrollView> 
         </View>
     )
 }
