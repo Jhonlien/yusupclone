@@ -1,22 +1,30 @@
 import React from 'react'
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native'
+import {useSelector} from 'react-redux';
 
 import Header from '../components/Header'
 import Card from '../components/Card'
 
 const Home = () => {
+    const cardData = useSelector(state => state)
     return (
         <View style={{flex:1}}>
             <Header/>
-            <ScrollView>
+            {/* <ScrollView>
                 <Card/>
                 <Card/>
-
                 <Card/>
                 <Card/>
-
-
-            </ScrollView> 
+            </ScrollView>  */}
+            <FlatList
+                data={cardData}
+                renderItem={({item})=>{
+                    return <Card
+                                
+                            
+                            />
+                }}
+            />
         </View>
     )
 }

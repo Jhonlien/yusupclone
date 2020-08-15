@@ -3,20 +3,20 @@ import { StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator } from '
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Minicard from '../components/Minicard'
-// import { useNavigation } from '@react-navigation/native';
-
-// const navigation = useNavigation();
-
+import {useSelector,useDispatch} from 'react-redux';
 const Search = ({navigation}) => {
     const [value, setValue] = useState('');
-    const [miniCard, setMiniCard ] = useState([])
+    // const [miniCard, setMiniCard ] = useState([])
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const miniCard = useSelector(state => state);
     const fetchData = () => {
         setLoading(true)
         fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyDZFrCT8yDrL4EdA_U4eI0bm0l5C2mo3o0`)
         .then(res=>res.json())
         .then(result => {
-            setMiniCard(result.items)
+            // setMiniCard(result.items)
+            dispatch({type:"add",payload:result.items})
             setLoading(false)
         })
         .catch(err => console.log(err))
