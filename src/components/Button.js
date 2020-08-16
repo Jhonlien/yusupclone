@@ -54,12 +54,12 @@ const styles = StyleSheet.create({
         height: 60,
         borderRadius: 60/2,
         position: 'absolute',
-        top: -50,
+        top: -40,
         shadowColor:'#7F58FF',
         shadowRadius: 5,
         shadowOffset: {height: 10},
         shadowOpacity:0.3,
-        borderWidth:2,
+        borderWidth:4,
         borderColor: '#fff'
 
     }

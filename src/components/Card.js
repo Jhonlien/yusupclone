@@ -1,11 +1,14 @@
 import React from 'react'
-import { StyleSheet, Text, View,Image, Dimensions } from 'react-native'
+import { StyleSheet, Text, View,Image, Dimensions, TouchableOpacity } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Card = (props) => {
+    const navigation = useNavigation();
     return (
+        <TouchableOpacity onPress = {()=>navigation.navigate('Videoplayer',{videoId:props.videoId,title:props.title})}>
         <View>
             <Image 
                 source={{uri:`https://i.ytimg.com/vi/${props.videoId}/default.jpg`}}
@@ -28,6 +31,7 @@ const Card = (props) => {
                 </View>
             </View>            
         </View>
+        </TouchableOpacity>
     )
 }
 
