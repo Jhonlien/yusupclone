@@ -2,11 +2,12 @@ import React from 'react'
 import { StyleSheet, Text, View,Image, Dimensions, TouchableOpacity } from 'react-native'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 
 
 const Card = (props) => {
     const navigation = useNavigation();
+    const {colors} = useTheme();
     return (
         <TouchableOpacity onPress = {()=>navigation.navigate('Videoplayer',{videoId:props.videoId,title:props.title})}>
         <View>
@@ -23,11 +24,19 @@ const Card = (props) => {
                     <Text 
                         ellipsizeMode="tail"
                         numberOfLines={2}
-                        style={styles.titleText}> {props.title}</Text>
-                    <Text style={styles.titleBottomText}>{props.channel}</Text>
+                        style={{
+                            fontSize: 14,
+                            fontWeight:"900",
+                            color: colors.logoTextColor,
+                            width:Dimensions.get("screen").width-100
+                        }}> {props.title}</Text>
+                    <Text style={{
+                         fontSize:12,
+                         color:colors.logoTextColor
+                    }}>{props.channel}</Text>
                 </View>
                 <View>
-                    <MaterialIcon name="more" size={20} color="grey" style={{marginTop:5}} />
+                    <MaterialIcon name="more" size={20} color={colors.logoTextColor} style={{marginTop:5}} />
                 </View>
             </View>            
         </View>
@@ -55,12 +64,9 @@ const styles = StyleSheet.create({
         marginRight:5
     },
     titleText:{
-        fontSize: 14,
-        fontWeight:"900",
-        width:Dimensions.get("screen").width-100
+       
     },
     titleBottomText:{
-        fontSize:12,
-        color:"#95a5a6"
+       
     }
 })

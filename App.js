@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-import {NavigationContainer} from '@react-navigation/native'
+import {NavigationContainer, DefaultTheme, DarkTheme} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {Provider} from 'react-redux'
@@ -19,7 +19,26 @@ import Button from './src/components/Button';
 
 import {reducer} from './src/reducers/reducer';
 
+const customDarkTheme =  {
+  ...DarkTheme,
+  colors : {
+    ...DarkTheme.colors,
+    headerColor : '#404040',
+    logoTextColor : 'white',
+    icons : 'white'
+  }
+}
 
+const customDefaultTheme =  {
+  ...DefaultTheme,
+  colors : {
+    ...DefaultTheme.colors,
+    headerColor : 'white',
+    logoTextColor: "black",
+    icons :"grey"
+
+  }
+}
 const Store = createStore(reducer);
 const stack = createStackNavigator()
 const tabs = createBottomTabNavigator();
@@ -72,7 +91,7 @@ const rootHome = () => {
 const App = () => {
   return (
     <Provider store={Store}>
-    <NavigationContainer>
+    <NavigationContainer theme={customDarkTheme}>
       <stack.Navigator headerMode="none">
         <stack.Screen name="rootHome" component={rootHome} />
         <stack.Screen name="Search" component={Search} />
