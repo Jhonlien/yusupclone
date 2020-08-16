@@ -39,7 +39,7 @@ const MiniCard = (props) =>{
 }
 
 const Explore = () => {
-    const CardData = useSelector(state=>state);
+    const CardData = useSelector(state=>state.CardData);
     return (
         <View style={{flex:1}}>
             <Header/>

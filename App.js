@@ -4,8 +4,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import {NavigationContainer, DefaultTheme, DarkTheme} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {Provider} from 'react-redux'
-import {createStore} from 'redux'
+import {Provider, useSelector} from 'react-redux'
+import {createStore, combineReducers} from 'redux'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import Home from './src/screens/Home';
@@ -18,6 +18,8 @@ import Library from './src/screens/Library';
 import Button from './src/components/Button';
 
 import {reducer} from './src/reducers/reducer';
+import {themeReducers} from './src/reducers/themeReducers';
+
 
 const customDarkTheme =  {
   ...DarkTheme,
@@ -36,12 +38,19 @@ const customDefaultTheme =  {
     headerColor : 'white',
     logoTextColor: "black",
     icons :"grey"
-
   }
 }
-const Store = createStore(reducer);
+
 const stack = createStackNavigator()
 const tabs = createBottomTabNavigator();
+
+const rootReducers = combineReducers({
+  cardData:reducer, //return []
+  myDarMode:themeReducers //return  false
+})
+const store = createStore(rootReducers);
+
+
 const rootHome = () => {
   return (
     <tabs.Navigator
@@ -88,20 +97,28 @@ const rootHome = () => {
     </tabs.Navigator>
   )
 }
-const App = () => {
+
+export default function App(){
   return (
-    <Provider store={Store}>
-    <NavigationContainer theme={customDarkTheme}>
+    <Provider store={store}>
+      <Navigation/>
+    </Provider>
+  )
+}
+
+function Navigation() {
+  const themeMode = useSelector(state => state.myDarMode)
+  return (
+    <NavigationContainer theme={themeMode ? customDarkTheme : customDefaultTheme}>
       <stack.Navigator headerMode="none">
         <stack.Screen name="rootHome" component={rootHome} />
         <stack.Screen name="Search" component={Search} />
         <stack.Screen name="Videoplayer" component={Videoplayer} />
       </stack.Navigator>
     </NavigationContainer>
-    </Provider>
   )
 }
 
-export default App
+// export default App
 
 const styles = StyleSheet.create({})

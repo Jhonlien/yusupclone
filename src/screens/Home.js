@@ -6,7 +6,7 @@ import Header from '../components/Header'
 import Card from '../components/Card'
 
 const Home = () => {
-    const cardData = useSelector(state => state)
+    const cardData = useSelector(state => state.cardData)
     return (
         <View style={{flex:1}}>
             <Header/>

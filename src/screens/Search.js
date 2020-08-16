@@ -10,7 +10,7 @@ const Search = ({navigation}) => {
     // const [miniCard, setMiniCard ] = useState([])
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
-    const miniCard = useSelector(state => state);
+    const miniCard = useSelector(state => state.cardData);
     const {colors} = useTheme();
     const fetchData = () => {
         setLoading(true)

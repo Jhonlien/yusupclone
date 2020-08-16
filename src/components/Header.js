@@ -1,12 +1,18 @@
-import React from 'react'
-import { StyleSheet, Text, View, Image, Button } from 'react-native'
+import React, {useState} from 'react'
+import { StyleSheet, Text, View, Image, Button, Switch } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation, useTheme } from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
 
 const Header = () => {
     const navigation = useNavigation();
     const {colors} = useTheme();
+    const dispatch = useDispatch();
+    const currentTheme = useSelector(state => state.myDarMode)
+    const [enable, setEnable] = useState(false);
+    const toggleSwitch = () => setEnable(previousState => !previousState);
+
     return (
         <View style={{
             flexDirection:'row',
@@ -27,6 +33,17 @@ const Header = () => {
                 }}>YouSup</Text>
             </View>
             <View style={[styles.rootIcon,styles.rightIcon]}>
+            <Switch
+                style={{marginBottom:5}}
+                trackColor={{ false: "#ecf0f1", true: "#95a5a6" }}
+                thumbColor={enable ? "#ecf0f1" : "#f4f3f4"}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={() => {
+                    dispatch({type:'change_theme',payload:!currentTheme})
+                    toggleSwitch()
+                }}
+                value={enable}
+            />
                 <MaterialIcon name="videocam" size={26} color={colors.icons} style={styles.rightIconChild}
                     onPress={()=>{console.log('wrap')}}
                 />
