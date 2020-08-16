@@ -20,10 +20,13 @@ const Home = () => {
                 data={cardData}
                 renderItem={({item})=>{
                     return <Card
-                                
-                            
-                            />
+                        videoId={item.id.videoId}
+                        title={item.snippet.title}
+                        thumbnail={item.snippet.thumbnails.default}
+                        channel={item.snippet.channelTitle}
+                    />
                 }}
+                keyExtractor={item => item.id.videoId}
             />
         </View>
     )
