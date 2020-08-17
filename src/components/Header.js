@@ -10,8 +10,10 @@ const Header = () => {
     const {colors} = useTheme();
     const dispatch = useDispatch();
     const currentTheme = useSelector(state => state.myDarMode)
-    const [enable, setEnable] = useState(false);
-    const toggleSwitch = () => setEnable(previousState => !previousState);
+    const switchDark = useSelector(state => state.switchDark)
+    const toggleSwitch = () => {
+        dispatch({type:'darkMode', payload:previousState => !previousState})
+    };
 
     return (
         <View style={{
@@ -34,7 +36,7 @@ const Header = () => {
             </View>
             <View style={[styles.rootIcon,styles.rightIcon]}>
             <Switch
-                style={{marginBottom:5}}
+                style={{marginBottom:5, marginRight:10}}
                 trackColor={{ false: "#ecf0f1", true: "#95a5a6" }}
                 thumbColor={enable ? "#ecf0f1" : "#f4f3f4"}
                 ios_backgroundColor="#3e3e3e"

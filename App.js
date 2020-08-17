@@ -19,6 +19,8 @@ import Button from './src/components/Button';
 
 import {reducer} from './src/reducers/reducer';
 import {themeReducers} from './src/reducers/themeReducers';
+import {switchReducers} from './src/reducers/switchReducers';
+
 
 
 const customDarkTheme =  {
@@ -45,8 +47,9 @@ const stack = createStackNavigator()
 const tabs = createBottomTabNavigator();
 
 const rootReducers = combineReducers({
-  cardData:reducer, //return []
-  myDarMode:themeReducers //return  false
+  cardData:reducer,         //return []
+  myDarMode:themeReducers,  //return  false
+  switchDark:switchReducers // return false
 })
 const store = createStore(rootReducers);
 

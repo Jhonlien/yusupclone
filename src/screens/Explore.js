@@ -14,7 +14,7 @@ const MiniCard = (props) =>{
     return (
         <View style={{
             height:45,
-            width:180,marginTop:5
+            width:165,marginTop:5
         }}>
             <ImageBackground source={{uri:props.image}} style={{
                  flex: 1,
@@ -43,7 +43,6 @@ const Explore = () => {
     return (
         <View style={{flex:1}}>
             <Header/>
-            <ScrollView>
             <View 
                 style={{
                     flexWrap:'wrap',
@@ -67,7 +66,6 @@ const Explore = () => {
                 }}
                 keyExtractor={item => item.id.videoId}
             />
-        </ScrollView>
         </View>
         
     )
